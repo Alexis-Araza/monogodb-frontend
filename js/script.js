@@ -1,8 +1,18 @@
 console.log("front-end");
+console.log(sessionStorage);
 let url;
 
 
+
 $(document).ready(function(){
+  if (sessionStorage['userName']) {
+    console.log('userName has logged in');
+  } else {
+    console.log ('Please login');
+  }
+
+
+
   $('#heading').click(function(){
     // $(this).css('background', 'teal');
   });
@@ -17,6 +27,8 @@ $(document).ready(function(){
     $('#adminPage').hide();
     $('#homePage').show();
   });
+
+
 
 //get url and port from config.json
 $.ajax({
@@ -33,6 +45,8 @@ $.ajax({
       }//error
 
     });
+
+
 
   $('#viewProductsBtn').click(function(){
     $.ajax({
@@ -64,6 +78,8 @@ $.ajax({
     
   }); //viewerProductsbtn
 
+
+
   $('#viewUserBtn').click(function(){
   	$.ajax({
   		url : `${url}/allUsers`,
@@ -80,11 +96,44 @@ $.ajax({
     
   }); //viewerUserbtn
 
+
+
+  $('#productForm').submit(function(){
+    event.preventDefault();
+    let productId = $('#productId').val();
+    let productName = $('#productName').val();
+    let productPrice = $('#productPrice').val();
+    let productDesc = $('#productDesc').val();
+    let userId = $('#userId').val();
+    console.log(productId,productName,productPrice,productDesc,userId);
+    $.ajax({
+      url : `${url}/updateProduct/${productId}`,
+      type : 'PATCH',
+      data:{
+        _id : productId,
+        product : productName,
+        price : productPrice,
+        descripton : productDesc,
+        userId : userId
+      },
+      success : function(productData){
+        console.log(productData);
+      }, //success
+      error : function(){
+        console.log('error: product cannot be updated');
+      }//error
+
+    }); //ajax
+    
+  }); //productForm
+
+
+
   $('#loginForm').submit(function(){
     event.preventDefault();
     let username = $('#username').val();
     let password = $('#password').val();
-    console.log(username,password);
+    // console.log(username,password);
     $.ajax({
       url : `${url}/loginUser`,
       type : 'POST',
@@ -111,5 +160,11 @@ $.ajax({
     
   }); //loginForm
 
+
+
+  $('#logoutBtn').click(function(){
+    sessionStorage.clear();
+    console.log(sessionStorage);
+  }) //logoutBtn
 
 });

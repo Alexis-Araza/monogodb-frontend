@@ -36,7 +36,7 @@
         <button id="viewUserBtn" type="button" class="btn btn-dark rounded-pill">View all users</button>
 
       <!-- login form -->
-      <form id="loginForm">
+      <form id="loginForm" class="py-5 px-5">
         <label for="username" class="">Username:</label>
         <input type="text" id="username" class="form-control" name="username" value="">
 
@@ -45,6 +45,36 @@
 
         <button id="submit" name="button" type="submit" class="btn btn-lg btn-light mt-4">Login</button>
       </form>
+
+      <!-- Product Manipulation -->
+
+      <div id="productM" class="">
+          <button id="addBtn" type="button" disabled class="btn btn-dark rounded-pill mr-20px">Add</button>
+          <button id="updateBtn" type="button" class="btn btn-dark rounded-pill">Update</button>
+          <button id="deleteBtn" type="button" disabled class="btn btn-dark rounded-pill mr-20px">Delete</button>
+
+          <br>
+
+        <form id="productForm" class="py-5 px-5">
+          <label for="product_id" class="">Product ID:</label>
+          <input type="text" id="productId" class="form-control" name="productId" value="">
+
+          <label for="product" class="">Product Name:</label>
+          <input type="text" id="productName" class="form-control" name="productName" value="">
+
+          <label for="price" class="">Price:</label>
+          <input type="text" id="productPrice" class="form-control" name="productPrice" value="">
+
+          <label for="description" class="">Description:</label>
+          <input type="text" id="productDesc" class="form-control" name="productDesc" value="">
+
+          <label for="user_id" class="">User ID:</label>
+          <input type="text" id="userId" class="form-control" name="userId" value="">
+
+          <button id="productSub" name="button" type="submit" class="btn btn-lg btn-light mt-4">Submit</button>
+        </form>
+      </div>
+
       </div>
 
     </div>
